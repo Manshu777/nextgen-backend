@@ -644,7 +644,7 @@ class FlightController extends Controller
     {
         $token = $this->apiService->getToken();
 
-        // Validate incoming request data
+  
         $validatedData = $request->validate([
             'PreferredCurrency' => 'nullable|string',
             'AgentReferenceNo' => 'required|string',
@@ -673,7 +673,7 @@ class FlightController extends Controller
             'ResultIndex' => 'required|string',
         ]);
 
-        // Prepare payload for the Ticket API request
+       
         $ticketPayload = [
             "PreferredCurrency" => $validatedData['PreferredCurrency'] ?? null,
             "AgentReferenceNo" => $validatedData['AgentReferenceNo'],
@@ -684,10 +684,10 @@ class FlightController extends Controller
             "ResultIndex" => $validatedData['ResultIndex']
         ];
 
-        // Call the Ticket API
+
         $response = Http::timeout(100)->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/Ticket', $ticketPayload);
 
-        // Handle token expiration (Error code 6)
+      
         if ($response->json('Response.Error.ErrorCode') === 6) {
             $token = $this->apiService->authenticate();
             $ticketPayload['TokenId'] = $token;
@@ -695,7 +695,7 @@ class FlightController extends Controller
             $response = Http::timeout(90)->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/Ticket', $ticketPayload);
         }
 
-        // Return the API response
+
         return $response->json();
     }
 
