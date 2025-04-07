@@ -15,33 +15,31 @@ class BusController extends Controller
         $this->apiService = $apiService;
     }
 
+    // https://Sharedapi.tektravels.com/StaticData.svc/rest/GetBusCityList
     // Method to search bus cities
+
+
     public function searchBusCityList(Request $request)
     {
-        // Fetch token from the ApiService
         $token = $this->apiService->getToken();
 
         // Make IpAddress optional in the validation
-        $validatedData = $request->validate([
-            "IpAddress" => 'nullable|ip',
-        ]);
+        // $validatedData = $request->validate([
+        //     "IpAddress" => 'nullable|ip',
+        // ]); $request['IpAddress'] ??
 
-        // Get the search query from the request (optional)
         $searchQuery = $request->query('city_name');  // GET query parameter
 
-        // Prepare the payload for the API request
         $searchPayload = [
             "TokenId" => $token,
-            "IpAddress" => $validatedData['IpAddress'] ?? '223.178.208.102', // Use provided IP or fallback to a default
+            "IpAddress" =>  '223.178.208.102', // Use provided IP or fallback to a default
             "ClientId" => 'ApiIntegrationNew',
         ];
 
-        // Make the API request to fetch all bus cities
         $response = Http::timeout(100)
             ->withHeaders([])
-            ->post('http://api.tektravels.com/SharedServices/StaticData.svc/rest/GetBusCityList', $searchPayload);
+            ->post('https://Sharedapi.tektravels.com/StaticData.svc/rest/GetBusCityList', $searchPayload);
 
-        // Check if the token has expired and retry with a new token
         if ($response->json('Response.Error.ErrorCode') === 6) {
             $token = $this->apiService->authenticate();
             $searchPayload['TokenId'] = $token;
@@ -49,7 +47,7 @@ class BusController extends Controller
             // Retry the request with the new token
             $response = Http::timeout(90)
                 ->withHeaders([])
-                ->post('http://api.tektravels.com/SharedServices/StaticData.svc/rest/GetBusCityList', $searchPayload);
+                ->post('https://Sharedapi.tektravels.com/StaticData.svc/rest/GetBusCityList', $searchPayload);
         }
 
         // Extract bus cities from the API response
