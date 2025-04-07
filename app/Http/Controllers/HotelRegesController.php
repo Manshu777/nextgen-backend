@@ -168,34 +168,58 @@ public function  sendVerify(Request $req){
     }
 
 
+    public function getAllhotels()
+    {
+        // Fetch hotels where is_active = 1
+        $users = Hotel::where('is_active', 1)->get(); 
+        $info = [];
+    
+        foreach ($users as $user) {
 
-public function getAllhotels(){
+            if ($user->user && $user->user->is_active != 1) {
+                continue;
+            }
+    
+  
+            $singlehotel = HotelDetails::where("hotel_id", $user["id"])
+                                        ->where('is_active', 1)
+                                        ->first();
+    
+   
+            if ($singlehotel === null) {
+                continue;
+            }
+    
+            // Add to result array if all conditions are met
+            $info[] = [
+                "hotel" => $singlehotel,
+                "user" => $user
+            ];
+        }
+    
+        return $info;
+    }
 
-$users=Hotel::all();
-$info=[];
 
-foreach($users as $user){
- $singlehotel=hoteldetails::where("hotel_id",$user["id"])->first();
-//  $singleAmendment=amenities::where("hotel_id",$user["id"])->first();
-//  $rooms=roomreg::where("hotel_id",$user["id"])->get();
- array_push($info,["hotel"=>$singlehotel,"user"=>$user]);
+public function getSingleHotellreq(string $slug)
+{
+    $user = hoteldetails::where("slug", $slug)->first();
+    if (!$user) {
+        return response()->json(['message' => 'Hotel not found'], 404);
+    }
 
-}
-return $info;}
+    $hotel = hoteldetails::where("hotel_id", $user["id"])->first();
+    $amenities = amenities::where("hotel_details_id", $user["id"])->first();
+    $rooms = roomreg::where("hotel_reg_new_id", $user["id"])->get();
 
+    $data = [
+        "user" => $user,
+        "hotel" => $hotel,
+        "amenities" => $amenities,
+        "rooms" => $rooms
+    ];
 
-
-
-
-public function getSingleHotellreq(string $slug){
-
-    $user=Hotel::where("slug",$slug)->first();
-    $hotel=hoteldetails::where("hotel_id",$user["id"])->first();
-   $amenities=amenities::where("hotel_id",$user["id"])->first();
-    $rooms=roomreg::where("hotel_id",$user["id"])->get();
-$data=["user"=>$user,"hotel"=>$hotel,"amenities"=>$amenities,"rooms"=>$rooms];
-return $data;
-
+    return response()->json($data);
 }
 
 

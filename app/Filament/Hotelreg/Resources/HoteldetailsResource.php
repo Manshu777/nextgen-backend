@@ -58,10 +58,20 @@ class HoteldetailsResource extends Resource
 
             Forms\Components\Section::make('Basic Information')
             ->schema([
-                Forms\Components\TextInput::make('property_name')->label('Property Name')->required(),
+                Forms\Components\TextInput::make('property_name')->label('Property Name')->required()
+                ->afterStateUpdated(function ($state, callable $set) {
+                    $set('slug', \Str::slug($state));
+                }),
+            
+            Forms\Components\TextInput::make('slug')
+                ->disabled()
+                ->dehydrated()
+                ->required(),
                 Forms\Components\RichEditor::make('hotel_des')->label('Hotel Description')->required(),
                 Forms\Components\FileUpload::make('hotel_img')
                     ->label('Hotel Images')
+                    ->disk('s3')
+                    ->directory('blog-image')
                     ->multiple()
                     ->required(),
                 Forms\Components\Select::make('rating')
@@ -109,7 +119,7 @@ class HoteldetailsResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('hotel_img'),
+                ImageColumn::make('hotel_img')->disk('s3'),
                 TextColumn::make('property_name'),
                 TextColumn::make('rating'),
                 TextColumn::make('email'),
