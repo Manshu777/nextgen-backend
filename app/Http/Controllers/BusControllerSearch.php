@@ -60,9 +60,10 @@ class BusControllerSearch extends Controller
     }
 
     public function busSeatLayout(Request $request){
-        $token = $this->apiService->getToken();
+        // $token = $this->apiService->getToken();
+        $token="b347ccfe-ee7b-4f57-8172-8ba114241259";
 
-        // Validate the request input, including IP address
+      
         $validatedData = $request->validate([
             'TraceId' => 'required',
             'ResultIndex' => 'required',

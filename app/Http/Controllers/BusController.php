@@ -28,7 +28,7 @@ class BusController extends Controller
         //     "IpAddress" => 'nullable|ip',
         // ]); $request['IpAddress'] ??
 
-        $searchQuery = $request->query('city_name');  // GET query parameter
+        // $searchQuery = $request->query('city_name');  // GET query parameter
 
         $searchPayload = [
             "TokenId" => $token,
@@ -54,11 +54,11 @@ class BusController extends Controller
         $busCities = $response->json('BusCities');
 
         // If a search query is provided, filter the bus cities
-        if ($searchQuery) {
-            $busCities = collect($busCities)->filter(function ($city) use ($searchQuery) {
-                return stripos($city['CityName'], $searchQuery) !== false;  // case-insensitive search
-            })->values()->all();
-        }
+        // if ($searchQuery) {
+        //     $busCities = collect($busCities)->filter(function ($city) use ($searchQuery) {
+        //         return stripos($city['CityName'], $searchQuery) !== false;  // case-insensitive search
+        //     })->values()->all();
+        // }
 
         // Return the filtered (or unfiltered) list of bus cities as JSON
         return response()->json([
