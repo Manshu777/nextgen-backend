@@ -99,9 +99,9 @@ class BusControllerSearch extends Controller
     }
 
     public function BookBus(Request $request){
-        // $token = $this->apiService->getToken();
+        $token = $this->apiService->getToken();
         // $token = $this->apiService->authenticate();
-        $token= "433ade50-2be8-4735-a4ec-5e3998cfafca";
+        // $token= "433ade50-2be8-4735-a4ec-5e3998cfafca";
         $validatedData = $request->validate([
             'TraceId' => 'required|string',
             'BoardingPointId' => 'required|integer',
@@ -122,6 +122,13 @@ class BusControllerSearch extends Controller
         
    $bookbus= Http::timeout(90)->withHeaders([])->post('https://BusBE.tektravels.com/Busservice.svc/rest/Book', $searchData);
 
+
+   if($bookbus->json('Response.Error.ErrorCode') === 6){
+    $token = $this->apiService->authenticate();
+    $searchData['TokenId'] = $token;
+    $bookbus= Http::timeout(90)->withHeaders([])->post('https://BusBE.tektravels.com/Busservice.svc/rest/Book', $searchData);
+
+   }
 return $bookbus;
 
 
