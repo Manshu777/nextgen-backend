@@ -17,6 +17,7 @@ class hoteldetails extends Model
         'hotel_des',
         'hotel_img',
         'rating',
+        'slug',
         'built_year',
         'accepting_since',
         'email',

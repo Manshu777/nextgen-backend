@@ -128,8 +128,10 @@ class RoomregResource extends Resource
             Forms\Components\FileUpload::make('image')
                 ->multiple()
                 ->image()
+                ->label('Hotel Images')
+                ->disk('s3')
+                ->directory('blog-image')
                 ->label('Room Images')
-                ->directory('room-images')
                 ->preserveFilenames(),
         ]),
 
@@ -142,7 +144,7 @@ class RoomregResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('image')->label('Room Images'),
+                ImageColumn::make('image')->label('Room Images')->disk('s3'),
                 TextColumn::make('room_type')->label('Room Type'),
                 TextColumn::make('size')->label('Size'),
                 TextColumn::make('bed_type')->label('Bed Type'),
