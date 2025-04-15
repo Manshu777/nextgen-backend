@@ -104,7 +104,7 @@ Route::post('v1/sightseeing', [SightseeingController::class, 'meRandomdata']);
 Route::get('v1/bus/cities', [BusController::class, 'searchBusCityList']);
 Route::post('v1/bus/search', [BusControllerSearch::class, 'searchBuses']);
 Route::post('v1/bus/seatlayout', [BusControllerSearch::class, 'busSeatLayout']);
-Route::post('v1/bus/book', [BusControllerSearch::class, 'BookBus']);
+Route::post('v1/bus/book', [BusControllerSearch::class, 'bookbus']);
 
 
 

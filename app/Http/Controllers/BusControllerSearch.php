@@ -61,8 +61,7 @@ class BusControllerSearch extends Controller
 
     public function busSeatLayout(Request $request){
         $token = $this->apiService->getToken();
-        // $token="b347ccfe-ee7b-4f57-8172-8ba114241259";
-
+        
       
         $validatedData = $request->validate([
             'TraceId' => 'required',
@@ -98,15 +97,15 @@ class BusControllerSearch extends Controller
 
     }
 
-    public function BookBus(Request $request){
-        $token = $this->apiService->getToken();
-        // $token = $this->apiService->authenticate();
-        // $token= "433ade50-2be8-4735-a4ec-5e3998cfafca";
+    public function bookbus(Request $request){
+         $token = $this->apiService->getToken();
+  
+       
         $validatedData = $request->validate([
             'TraceId' => 'required|string',
             'BoardingPointId' => 'required|integer',
             'DropingPointId' => 'required|integer',
-            'ResultIndex' => 'required|integer',
+            'ResultIndex' => 'required|string',
         "passenger"=>'required|array'
           ]);
 
@@ -119,6 +118,7 @@ class BusControllerSearch extends Controller
     "DropingPointId"=>$validatedData["DropingPointId"],
     "Passenger"=>$validatedData["passenger"]
    ];
+ 
         
    $bookbus= Http::timeout(90)->withHeaders([])->post('https://BusBE.tektravels.com/Busservice.svc/rest/Book', $searchData);
 
@@ -131,31 +131,7 @@ class BusControllerSearch extends Controller
    }
 return $bookbus;
 
-
-
-    //     $search=[  "TraceId" => $validatedData['TraceId'],
-    //         "ResultIndex" => $validatedData['ResultIndex'],
-    //         "EndUserIp" => $validatedData['EndUserIp'],  
-    //         "TokenId" => $token,
-    //         "Passenger"=>$request["Passenger"]
-    // ];
-
-    // $busBook = Http::timeout(100)->withHeaders([])->post('https://BusBE.tektravels.com/Busservice.svc/rest/Search', $search);
-
-    // if ($busBook->json('Response.Error.ErrorCode') === 6) {
-    //     // Re-authenticate to get a new token
-    //     $token = $this->apiService->authenticate();
-    //     $search['TokenId'] = $token;
-    //     $busBook = Http::timeout(100)->withHeaders([])->post('https://BusBE.tektravels.com/Busservice.svc/rest/Search', $search);
-    //    };
-
-
-    //    return   response()->json(["buslayout"=>json_decode($busBook)]);
-
-
-
-        
-    }
+}
 }
 
 

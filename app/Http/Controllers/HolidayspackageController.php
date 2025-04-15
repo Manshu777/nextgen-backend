@@ -14,7 +14,7 @@ class HolidayspackageController extends Controller
 
         $package = TravelPackage::where("package_name", "LIKE", "%{$name}%")
         ->orWhere("package_Type", "LIKE", "%{$name}%")
-        ->orWhere("city", "LIKE", "%{$name}%")->where("status",true)->get();
+        ->orWhere("city", "LIKE", "%{$name}%")->where("is_active",true)->get();
 
 
         if(!$package){
