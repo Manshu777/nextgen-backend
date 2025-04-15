@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PopularFlightResource\Pages;
 use App\Filament\Resources\PopularFlightResource\RelationManagers;
-use App\Models\Popular_Destination;
+use App\Models\PopularDestination;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -18,7 +18,7 @@ use Filament\Tables\Columns\TextColumn;
 
 class PopularFlightResource extends Resource
 {
-    protected static ?string $model = Popular_Destination::class;
+    protected static ?string $model = PopularDestination::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

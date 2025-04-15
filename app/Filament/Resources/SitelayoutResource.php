@@ -26,21 +26,19 @@ class SitelayoutResource extends Resource
         return $form
             ->schema([
                 FileUpload::make('banner_image')->label("Slider Images")->image()
-                ->multiple()
-                ->maxSize(1.5 * 1024),
+                ->multiple(),
 
-                FileUpload::make('image1')->label("Images 1")->image()
-                ->maxSize(1.5 * 1024),
+                FileUpload::make('image1')->label("Images 1")->image(),
 
 
                 FileUpload::make('image2')->label("Images 2")->image()
                 ->multiple()
-                ->maxSize(1.5 * 1024),
+    ,
 
 
                 FileUpload::make('image3')->label("Images 3")->image()
                 ->multiple()
-                ->maxSize(1.5 * 1024)
+                
 
             ]);
     }
