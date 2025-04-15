@@ -64,6 +64,8 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([
                 \Ercogx\FilamentOpenaiAssistant\OpenaiAssistantPlugin::make()
             ])
+            ->brandLogo(asset('images/logo.jpg'))
+            ->brandLogoHeight('50px')
             ->authMiddleware([
                 Authenticate::class,
             ]);

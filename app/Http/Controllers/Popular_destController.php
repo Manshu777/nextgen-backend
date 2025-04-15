@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Popular_Destination;
-use App\Models\Popular_hotels;
+use App\Models\PopularDestination;
+use App\Models\PopularHotels;
 
 class Popular_destController extends Controller
 {
     //
     public function Popular_flight(){
-      $info=  Popular_Destination::all();
+      $info=  PopularDestination::all();
         return $info ;
     }
     public function Popular_hotel(){
-        $info=  Popular_hotels::all();
+        $info=  PopularHotels::all();
           return $info ;
       }
 }
