@@ -35,7 +35,8 @@ class HolidayspackageController extends Controller
     }
 
 public  function getActivePackage(){
-    $package=TravelPackage::where("is_active",true)->get();
+    $package=TravelPackage::where("is_active",true) ->inRandomOrder()
+    ->take(8)->get();
 
     return $package;
 }
