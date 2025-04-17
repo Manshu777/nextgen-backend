@@ -18,6 +18,8 @@ use App\Http\Controllers\HotelControllerSearchRes;
 use App\Http\Controllers\CountryControllerCab;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\TransferSearchController;
+use App\Http\Controllers\TicketBookingController;
+
 
 use App\Http\Controllers\ImageController;
 
@@ -58,6 +60,11 @@ Route::post('v1/farequate', [FlightController::class, 'farequate']);
 Route::post('v1/flight-book', [FlightController::class, 'bookFlight']);
 Route::post('v1/genrate-ticket', [FlightController::class, 'generateTicket']);
 Route::post('v1/get-calendar-fare', [FlightController::class, 'getCalendarFare']);
+
+
+
+Route::get('/test-ticket', [TicketBookingController::class, 'testTicketGeneration']);
+
 
 // genrateTickBook
 
