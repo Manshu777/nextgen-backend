@@ -44,6 +44,7 @@ class HotelregPanelProvider extends PanelProvider
             ->path('hotelreg')
             ->login()
             ->registration()
+            ->passwordReset()
             ->colors([
                 'danger' => Color::Red,
                 'gray' => Color::Slate,
