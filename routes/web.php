@@ -33,8 +33,8 @@ Route::get('/create-storage-link', function () {
 
 Route::get("/destory-storage-link",function(){
 Artisan::call('storage:unlink');
-return 'unlink successfully';
-});
+return 'unlink successfull';
+}); 
 
 
 
