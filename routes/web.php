@@ -24,7 +24,6 @@ Route::get('/test-email-view', function () {
 });
 
 
-
 // Route::middleware(['ensure.token'])->post('/search-flightss', [FlightController::class, 'searchFlights']);
 
 // Route::middleware(['ensure.token'])->post('/search-flights', [FlightController::class, 'searchFlights']);
