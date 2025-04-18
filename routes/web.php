@@ -23,6 +23,14 @@ Route::get('/test-email-view', function () {
     return view('emails.ticket', compact('ticket'));
 });
 
+use Illuminate\Support\Facades\Artisan;
+
+
+Route::get('/create-storage-link', function () {
+    Artisan::call('storage:link');
+    return 'Storage link created successfully!';
+});
+
 
 // Route::middleware(['ensure.token'])->post('/search-flightss', [FlightController::class, 'searchFlights']);
 
