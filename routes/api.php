@@ -136,52 +136,23 @@ Route::post("v1/hotelreq/otp", [HotelRegesController::class, "sendHotelOtp"]);
 Route::post("v1/hotelreq/loginhotel", [HotelRegesController::class, "loginhotel"]);
 Route::get("v1/hotel/all", [HotelRegesController::class, "getAllhotels"]);
 Route::get("v1/hotel/single/{slug}", [HotelRegesController::class, "getSingleHotellreq"]);
-
-
-
 Route::post("v1/user/sendotp", [OtpController::class, "sendOtp"]);
 Route::post("v1/user/verifyotp", [OtpController::class, "verifyOtp"]);
 Route::post("v1/user/forgotPassword", [OtpController::class, "forgotPasswordSendotp"]);
-
-
 //getCancellationCharges
 
-
 // Route::post('v1/flight-cancel-charges', [FlightController::class, 'getCancellationCharges']);
-
-
-
 Route::post("v1/user/signup", [SiteUser::class, "signupUser"]);
 Route::post("v1/user/verifyotp", [SiteUser::class, "verifyOtp"]);
-
 Route::post("v1/user/login", [SiteUser::class, "loginUser"]);
 Route::get("v1/user/{id}", [SiteUser::class, "getSingleuser"]);
 Route::put("v1/user/{id}", [SiteUser::class, "updateUser"]);
-
 Route::get('v1/user-bookings/{id}', [FlightController::class, 'getUserBookings']);
 Route::post('v1/get-booking-details', [FlightController::class, 'getBookingDetails']);
-
 Route::post("v1/insurance",[InsuranceController::class,"GetInsurance"]);
-
-
-
-
 Route::post("v1/cruise",[CruiseController::class,"sendCruiseMessage"]);
-
-
 Route::post("v1/charter",[CharterController::class,"sendCharterMessage"]);
-
-
-
-
 Route::resource('v1/hotels/checkins', CheckinsController::class);
-
-
-
-
-
-
-
 Route::post("v1/hotelreg/booked",[BookedhotelsController::class,"bookhotel"]);
 
 use App\Http\Controllers\LastUpdateController;

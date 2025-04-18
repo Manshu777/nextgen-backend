@@ -31,8 +31,13 @@ Route::get('/create-storage-link', function () {
     return 'Storage link created successfully!';
 });
 
+Route::get("/destory-storage-link",function(){
+Artisan::call('storage:unlink');
+return 'unlink successfully';
+});
+
+
 
 // Route::middleware(['ensure.token'])->post('/search-flightss', [FlightController::class, 'searchFlights']);
-
 // Route::middleware(['ensure.token'])->post('/search-flights', [FlightController::class, 'searchFlights']);
 // Route::get('/search-flights-one', [FlightController::class, 'searchFlights']);
