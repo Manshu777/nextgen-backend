@@ -26,7 +26,6 @@ class AmenitiesResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-globe-americas';
 
 
-   
     protected static ?string $navigationGroup = 'Amenities Management';
 
 

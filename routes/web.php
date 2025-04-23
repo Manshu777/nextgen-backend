@@ -3,6 +3,7 @@
 use App\Http\Controllers\InvoiceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FlightController;
+use Illuminate\Support\Facades\File;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,9 +33,18 @@ Route::get('/create-storage-link', function () {
 });
 
 Route::get("/destory-storage-link",function(){
-Artisan::call('storage:unlink');
-return 'unlink successfull';
+    if (File::exists(public_path('storage'))) {
+        File::delete(public_path('storage'));
+        return 'Unlink successful!';
+    } else {
+        return 'Symlink does not exist!';
+    }
 }); 
+
+
+
+
+
 
 
 
