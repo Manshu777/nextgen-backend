@@ -1,5 +1,6 @@
 <?php
-namespace App\Filament\Widgets;
+namespace App\Filament\Hotelreg\Resources\WelcomeInstructionsResource\Widgets;
+
 
 use Filament\Widgets\Widget;
 
