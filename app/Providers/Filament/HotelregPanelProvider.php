@@ -81,7 +81,7 @@ class HotelregPanelProvider extends PanelProvider
             ->brandLogoHeight('50px')
             ->authGuard('hotels')
             ->widgets([
-                WelcomeInstructions::class,
+               
             ]);
     }
 }
