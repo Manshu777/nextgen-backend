@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Toppackage;
 use App\Models\TravelPackage;
 use Illuminate\Http\Request;
 
@@ -41,6 +42,14 @@ public  function getActivePackage(){
     return $package;
 }
 
+
+public function topfivepackage(){
+
+  $package=  Toppackage::inRandomOrder()->take(5)->get();
+
+return $package;
+
+}
 
 
 }
