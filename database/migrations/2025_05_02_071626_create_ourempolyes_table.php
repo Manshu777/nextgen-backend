@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('customerfeedbacks', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("loaction");
+            $table->string("location");
             $table->text("review");
             $table->float("rating");
             $table->timestamps();

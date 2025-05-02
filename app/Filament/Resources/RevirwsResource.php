@@ -22,12 +22,13 @@ class RevirwsResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function form(Form $form): Form
+     protected static?string  $navigationLabel ="Reviews";
+    public static function form(Form $form): Form 
     {
         return $form
             ->schema([
                 TextInput::make("name")->label("Name"),
-                TextInput::make("loaction")->label("Location"),
+                TextInput::make("location")->label("Location"),
                 Textarea::make("review")->label("Review"),
                 TextInput::make("rating")->label("Rating"),
             ]);
@@ -38,7 +39,7 @@ class RevirwsResource extends Resource
         return $table
             ->columns([
                 TextColumn::make("name")->label("Name"),
-                TextColumn::make("loaction")->label("Location"),
+                TextColumn::make("location")->label("Location"),
                 TextColumn::make("review")->label("Review"),
                 TextColumn::make("rating")->label("Rating"),
             ])
