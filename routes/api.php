@@ -171,6 +171,7 @@ Route::get("/v1/holidays-package/{name}",[HolidayspackageController::class,"GetH
 Route::get("/v1/holidays/top",[HolidayspackageController::class,"getActivePackage"]);
 
 Route::get("/v1/holidays/list",[HolidayspackageController::class,"topfivepackage"]);
+Route::get("/v1/holidays/review",[HolidayspackageController::class,"getallreview"]);
 
 
    use App\Http\Controllers\MyportsController;

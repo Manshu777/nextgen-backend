@@ -11,18 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('toppackages', function (Blueprint $table) {
+        Schema::create('customerfeedbacks', function (Blueprint $table) {
             $table->id();
-            $table->string("url");
-            $table->string("img");
-            $table->string("title");
-            $table->string("des");
+            $table->string("name");
+            $table->string("loaction");
+            $table->text("review");
+            $table->float("rating");
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('toppackages');
+        Schema::dropIfExists('ourempolyes');
     }
 };

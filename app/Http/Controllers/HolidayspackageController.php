@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ourempolyes;
 use App\Models\Toppackage;
 use App\Models\TravelPackage;
 use Illuminate\Http\Request;
@@ -51,5 +52,10 @@ return $package;
 
 }
 
+public function getallreview(){
+    $review=Ourempolyes::all();
+
+    return $review;
+}
 
 }
